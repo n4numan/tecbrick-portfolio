@@ -1,4 +1,3 @@
-<!-- HeroSection.vue -->
 <template>
   <section class="hero">
     <div class="container hero-content">
@@ -10,91 +9,89 @@
           👋 Hello, I'm
         </span>
 
-        <h1>Numan Khan</h1>
+        <h1>{{ portfolio.name }}</h1>
 
-        <h2>Full Stack Developer</h2>
+        <h4>{{ portfolio.title }}</h4>
 
         <!-- Tech Stack -->
         <div class="tech-stack">
 
-          <q-chip color="primary" text-color="white">
-            Python
-          </q-chip>
-
-          <q-chip color="primary" text-color="white">
-            FastAPI
-          </q-chip>
-
-          <q-chip color="primary" text-color="white">
-            Django
-          </q-chip>
-
-          <q-chip color="primary" text-color="white">
-            Vue.js
-          </q-chip>
-
-          <q-chip color="primary" text-color="white">
-            Quasar Framework
-          </q-chip>
-
-          <q-chip color="primary" text-color="white">
-            Python AI
+          <q-chip
+            v-for="tech in portfolio.technologies"
+            :key="tech"
+            color="primary"
+            text-color="white"
+          >
+            {{ tech }}
           </q-chip>
 
         </div>
 
         <p>
-          I specialize in building scalable web applications,
-          REST APIs, and AI-powered solutions using Python,
-          FastAPI, Django, Vue.js, and Quasar.
+          {{ portfolio.description }}
         </p>
 
         <!-- Buttons -->
-
         <div class="hero-buttons">
 
           <q-btn
             color="primary"
             unelevated
             rounded
-            label="Hire Me"
-            icon="work"
+            icon="mail"
+            label="Contact Me"
+            :href="portfolio.buttons.contact"
           />
 
           <q-btn
             outline
             color="primary"
             rounded
-            label="Download Resume"
             icon="download"
+            label="Download Resume"
+            :href="portfolio.buttons.resume"
+            target="_blank"
           />
 
         </div>
 
         <!-- Social Icons -->
+      <div class="social-links">
 
-        <div class="social-links">
-
-          <q-btn
+        <q-btn
             flat
-            round
+            no-caps
             icon="code"
+            label="GitHub"
             color="grey-8"
-          />
+            :href="portfolio.social.github"
+            target="_blank"
+        >
+            <q-tooltip>GitHub</q-tooltip>
+        </q-btn>
 
-          <q-btn
+        <q-btn
             flat
-            round
+            no-caps
             icon="business"
-            color="grey-8"
-          />
+            label="LinkedIn"
+            color="primary"
+            :href="portfolio.social.linkedin"
+            target="_blank"
+        >
+            <q-tooltip>LinkedIn</q-tooltip>
+        </q-btn>
 
-          <q-btn
+        <q-btn
             flat
-            round
+            no-caps
             icon="mail"
-            color="grey-8"
-          />
+            label="Email"
+            color="red"
+            :href="portfolio.social.email"
+        >
+            <q-tooltip>Email</q-tooltip>
+        </q-btn>
 
         </div>
 
@@ -108,10 +105,12 @@
           size="340px"
           class="profile-avatar"
         >
+
           <img
-            :src="profileImage"
-            alt="Numan Khan"
+            :src="portfolio.profileImage"
+            :alt="portfolio.name"
           />
+
         </q-avatar>
 
       </div>
@@ -121,8 +120,7 @@
 </template>
 
 <script setup>
-import profileImage from '@/assets/images/profile.jpg'
-// import portfolioData from '@/data/portfolio.js'
+import portfolio from '@/data/portfolio.js'
 </script>
 
 <style scoped lang="scss">
@@ -201,59 +199,96 @@ import profileImage from '@/assets/images/profile.jpg'
 
   color:#2563EB;
 
-  font-weight:600;
+  font-weight:400;
 
 }
 
-h1{
+// h1{
 
-  font-size:72px;
+//   font-size:65px;
+//   font-weight:900;
+//   color:#0F172A;
+//   line-height:1.1;
+//   margin:15px 0;
+// }
 
-  font-weight:900;
 
-  color:#0F172A;
+// h2{
 
-  line-height:1.1;
+//   font-size:30px;
+//   color:#64748B;
+//   margin-bottom:px;
+//   font-weight:600;
+// }
+// .tech-stack{
+//   display:flex;
+//   flex-wrap:wrap;
+//   gap:12px;
+//   margin-bottom:35px;
+// }
 
-  margin:15px 0;
+// p{
 
+//   font-size:19px;
+//   line-height:1.9;
+//   color:#475569;
+//   max-width:600px;
+// }
+
+// .hero-buttons{
+//   display:flex;
+//   gap:20px;
+//   margin-top:45px;
+// }
+h1 {
+  font-size: 65px;
+  font-weight: 900;
+  color: #0F172A;
+  line-height: 1.1;
+  margin: 12px 0 10px;
 }
 
-h2{
-
-  font-size:34px;
-
-  color:#64748B;
-
-  margin-bottom:30px;
-
-  font-weight:700;
-
+h4 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #64748B;
+  margin: 0 0 18px;
 }
 
-.tech-stack{
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:12px;
-
-  margin-bottom:35px;
-
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 
-.tech-stack .q-chip{
+// h1{
+//   font-size:65px;
+//   font-weight:900;
+//   color:#0F172A;
+//   line-height:1.1;
+//   margin:8px 4px 6px;
+// }
+// h4{
+//   font-size:30px;
+//   font-weight:600;
+//   color:#64748B;
+//   margin:0 0 12px;
+// }
+// .tech-stack{
+//   display:flex;
+//   flex-wrap:wrap;
+//   gap:8px;
+//   margin-bottom:18px;
+// }
 
-  border-radius:30px;
 
-  font-weight:600;
-
-  padding:4px 8px;
-
-  transition:.3s;
-
-}
+// .tech-stack .q-chip{
+//   border-radius:30px;
+//   font-weight:500;
+//   padding:3px 6px;
+//   transition:.3s;
+// }
 
 .tech-stack .q-chip:hover{
 
@@ -261,66 +296,65 @@ h2{
 
 }
 
-p{
-
-  font-size:19px;
-
-  line-height:1.9;
-
-  color:#475569;
-
-  max-width:600px;
-
+p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #475569;
+  max-width: 600px;
+  margin: 0;
 }
 
-.hero-buttons{
-
-  display:flex;
-
-  gap:20px;
-
-  margin-top:45px;
-
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 30px;
 }
 
-.hero-buttons .q-btn{
 
-  padding:10px 18px;
 
-  font-weight:600;
+// p{
+//   font-size:18px;
+//   line-height:1.7;
+//   color:#475569;
+//   max-width:600px;
+//   margin:2px;
+// }
 
-}
+// .hero-buttons{
+//   display:flex;
+//   gap:16px;
+//   margin-top:24px;
+// }
+
+// .hero-buttons .q-btn{
+//   padding:10px 18px;
+//   font-weight:600;
+// }
+
+// .social-links{
+//   display:flex;
+//   gap:15px;
+//   margin-top:35px;
+// }
 
 .social-links{
-
   display:flex;
-
-  gap:15px;
-
-  margin-top:35px;
-
+  gap:16px;
+  margin-top:24px;
+  flex-wrap:wrap;
 }
 
 .social-links .q-btn{
-
-  width:48px;
-
-  height:48px;
-
-  border-radius:50%;
-
-  background:white;
-
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-
+  border-radius:12px;
+  padding:8px 16px;
+  font-weight:600;
+  background:#fff;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
   transition:.3s;
-
 }
 
 .social-links .q-btn:hover{
-
-  transform:translateY(-5px);
-
+  transform:translateY(-3px);
 }
 
 .profile-avatar{

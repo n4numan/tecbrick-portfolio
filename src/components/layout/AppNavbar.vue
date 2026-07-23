@@ -38,7 +38,7 @@
         color="primary"
         unelevated
         rounded
-        label="Hire Me"
+        label="Me"
       />
 
     </q-toolbar>
