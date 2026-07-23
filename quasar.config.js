@@ -41,18 +41,7 @@ export default defineConfig((/* ctx */) => {
       // filenameBasedRouting: true,
 
       vueRouterMode: 'hash', // available values: 'hash', 'history'
-      // vueRouterBase,
-      // vueDevtools,
-
-      // publicPath: '/',
-      // define: {},
-      // defineEnv: {}
-      // ignorePublicFolder: true,
-      // minify: false,
-      // distDir
-
-      // extendViteConf (viteConf) {},
-      // viteVuePluginOptions: {},
+      scssAdditionalData: `@use "src/css/variables.scss" as *;`,
 
       vitePlugins: [
         [
